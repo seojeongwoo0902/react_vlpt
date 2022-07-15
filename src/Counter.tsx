@@ -1,20 +1,23 @@
+import { type } from "@testing-library/user-event/dist/type";
 import React, { useReducer } from "react";
 
-type Action = { type: "INCREASE" } | { type: "DECREASE" }; // 이렇게 액션을 | 으로 연달아서 쭉 나열하세요.
+type Action = { type: "INCREASE" } | { type: "DECREASE" };
 
-function reducer(state: number, action: Action): number {
+function reducer(state: any, action: Action) {
   switch (action.type) {
     case "INCREASE":
       return state + 1;
     case "DECREASE":
       return state - 1;
+
     default:
-      throw new Error("Unhandled action");
+      throw new Error("dwad");
   }
 }
 
 function Counter() {
   const [count, dispatch] = useReducer(reducer, 0);
+
   const onIncrease = () => dispatch({ type: "INCREASE" });
   const onDecrease = () => dispatch({ type: "DECREASE" });
 
@@ -22,8 +25,8 @@ function Counter() {
     <div>
       <h1>{count}</h1>
       <div>
-        <button onClick={onIncrease}>+1</button>
-        <button onClick={onDecrease}>-1</button>
+        <button onClick={onIncrease}>+</button>
+        <button onClick={onDecrease}>-</button>
       </div>
     </div>
   );
